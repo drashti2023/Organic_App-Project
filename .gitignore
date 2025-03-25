@@ -1,0 +1,25 @@
+# Ignore node_modules in both frontend and backend
+node_modules/
+server/node_modules/
+client/node_modules/
+
+# Ignore build files
+dist/
+out-tsc/
+server/build/
+client/build/
+
+# Ignore logs
+npm-debug.log
+yarn-error.log
+
+# Ignore environment files
+server/.env
+client/.env
+
+# Ignore IDE and system files
+.vscode/
+.idea/
+*.sublime-workspace
+.DS_Store
+Thumbs.db

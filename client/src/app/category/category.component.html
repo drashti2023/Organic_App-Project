@@ -1,0 +1,36 @@
+<section class="py-5 overflow-hidden">
+  <div class="container-lg">
+    <div class="row">
+      <div class="col-md-12">
+
+        <div class="section-header d-flex flex-wrap justify-content-between mb-5">
+          <h2 class="section-title fw-bold text-uppercase">Category</h2>
+
+          <div class="d-flex align-items-center">
+            <!-- <a href="#" class="btn btn-primary me-2">View All</a> -->
+            <div class="swiper-buttons">
+              <button class="swiper-prev category-carousel-prev btn btn-yellow">❮</button>
+              <button class="swiper-next category-carousel-next btn btn-yellow">❯</button>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+
+        <div class="category-carousel swiper">
+          <div class="swiper-wrapper">
+            <a class="nav-link swiper-slide text-center" *ngFor="let temp of category">
+              <img [src]="temp.image.url" class="category-img" alt="Category Thumbnail" (click)="viewCategory(temp._id)">
+              <h4 class="fs-6 mt-3 fw-normal category-title">{{ temp.name }}</h4>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+

@@ -1,0 +1,70 @@
+<section class="py-5 overflow-hidden">
+  <div class="container-lg">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="section-header d-flex flex-wrap justify-content-between align-items-center mb-4">
+          <h2 class="section-title fw-bold text-uppercase">Popular Products</h2>
+          <div class="d-flex align-items-center">
+            <!-- <a routerLink="/products/popular" class="btn btn-primary me-3">View All</a> -->
+            <div class="swiper-buttons d-flex">
+              <button class="swiper-prev popular-carousel-prev btn btn-outline-dark rounded-circle me-2">❮</button>
+              <button class="swiper-next popular-carousel-next btn btn-outline-dark rounded-circle">❯</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Loading Indicator -->
+    <div *ngIf="loading; else productList">
+      <div class="text-center mt-4">
+        <div class="spinner-border text-primary" role="status"></div>
+        <p class="mt-2">Fetching Popular Products...</p>
+      </div>
+    </div>
+
+    <!-- Popular Products Carousel -->
+    <ng-template #productList>
+      <div *ngIf="popularProducts.length > 0; else noProducts">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="popular-carousel swiper">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide text-center" *ngFor="let product of popularProducts">
+                  <div class="card product-card">
+                    
+                    <!-- Wishlist Button -->
+                    <button class="wishlist-btn btn btn-light position-absolute top-0 end-0 m-2" (click)="addToWishlist(product)">
+                      <i class="bi bi-heart"></i>
+                    </button>
+
+                    <!-- Product Image -->
+                    <img [src]="product.imageUrl" class="card-img-top product-img" [alt]="product.name" (click)="viewProductDetails(product)">
+
+                    <div class="card-body text-center">
+                      <h5 class="card-title fw-semibold">{{ product.name }}</h5>
+                      <p class="card-text fw-bold text-success">₹ {{ product.price }}</p>
+                      <div class="d-flex align-items-center mt-2">
+                        <button class="btn btn-outline-primary flex-grow-1" (click)="viewProductDetails(product)">View Details</button>
+                        <button class="btn btn-success btn-sm ms-2" (click)="addToCart(product)">
+                          <i class="bi bi-cart"></i>
+                        </button>
+                      </div>
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+
+    <!-- No Products Found -->
+    <ng-template #noProducts>
+      <p class="text-center text-muted">No popular products found.</p>
+    </ng-template>
+
+  </div>
+</section>

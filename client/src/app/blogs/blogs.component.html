@@ -1,0 +1,38 @@
+<section id="latest-blog" class="pb-4">
+  <div class="container-lg">
+    <div class="section-header text-center my-4">
+      <h2 class="section-title">Our Recent Blogs</h2>
+      <p class="section-subtitle">Explore the latest stories, tips, and trends.</p>
+    </div>
+
+    <!-- Carousel -->
+    <div id="blogCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div
+          class="carousel-item"
+          *ngFor="let blog of blogs; let i = index"
+          [class.active]="i === 0"
+        >
+          <div class="card border-0 shadow-sm mx-auto" style="max-width: 800px;">
+            <img [src]="blog.image.url" [alt]="blog.image.altText" class="card-img-top rounded-top" />
+            <div class="card-body">
+              <h3 class="card-title">{{ blog.title }}</h3>
+              <p class="card-text">{{ blog.content }}</p>
+              <a href="#" class="btn btn-primary">Read More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Carousel Controls -->
+      <button class="carousel-control-prev" type="button" data-bs-target="#blogCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#blogCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+</section>

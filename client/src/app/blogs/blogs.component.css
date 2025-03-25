@@ -1,0 +1,173 @@
+/* Carousel Enhancement */
+.carousel {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Standardized Carousel Images */
+  .carousel-item img {
+    height: 350px; /* Fixed height for all carousel images */
+    width: 100%;
+    align-items: center;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.8s ease, filter 0.5s ease;
+  }
+  
+  /* Dynamic Hover Effect on Images */
+  .carousel:hover .carousel-item.active img {
+    transform: scale(1.02);
+  }
+  
+  /* Enhanced Carousel Navigation Arrows */
+  .carousel-control-prev,
+  .carousel-control-next {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.7;
+    transition: all 0.3s ease;
+  }
+  
+  .carousel-control-prev {
+    left: 20px;
+  }
+  
+  .carousel-control-next {
+    right: 20px;
+  }
+  
+  .carousel-control-prev:hover,
+  .carousel-control-next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+    opacity: 1;
+    transform: translateY(-50%) scale(1.1);
+  }
+  
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    width: 24px;
+    height: 24px;
+  }
+  
+  /* Smooth Slide Transitions */
+  .carousel-item {
+    transition: transform 0.8s ease-in-out, opacity 0.5s ease;
+  }
+  
+  /* Unique Fade Effect */
+  .carousel-fade .carousel-item {
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+  }
+  
+  .carousel-fade .carousel-item.active {
+    opacity: 1;
+    z-index: 1;
+  }
+  
+  /* Caption Enhancement */
+  .carousel-caption {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+    border-radius: 0 0 8px 8px;
+    padding: 30px 20px 20px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: left;
+    transform: translateY(20px);
+    opacity: 0.9;
+    transition: transform 0.5s ease, opacity 0.5s ease;
+  }
+  
+  .carousel:hover .carousel-caption {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  
+  /* Indicators Enhancement */
+  .carousel-indicators {
+    bottom: 15px;
+  }
+  
+  .carousel-indicators li {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin: 0 5px;
+    background-color: rgba(255, 255, 255, 0.6);
+    transition: all 0.3s ease;
+  }
+  
+  .carousel-indicators li.active {
+    width: 14px;
+    height: 14px;
+    background-color: #fff;
+    transform: scale(1.2);
+  }
+  
+  /* Blog Card Transition */
+  .blog-card {
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                box-shadow 0.4s ease;
+    overflow: hidden;
+    margin-bottom: 30px;
+  }
+  
+  .blog-card:hover {
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Blog Card Image */
+  .blog-card img {
+    height: 220px;
+    width: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  .blog-card:hover img {
+    transform: scale(1.05);
+  }
+  
+  /* Unique Blog Hover Effect */
+  .blog-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(to right, #007bff, #00c6ff);
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.4s ease;
+  }
+  
+  .blog-card:hover::before {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .carousel-item img {
+      height: 300px;
+    }
+    
+    .carousel-control-prev,
+    .carousel-control-next {
+      width: 40px;
+      height: 40px;
+    }
+    
+    .blog-card img {
+      height: 180px;
+    }
+  }

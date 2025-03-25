@@ -1,0 +1,43 @@
+<!-- Products Section -->
+<div *ngIf="products.length > 0; else noProducts">
+  <h3>Available Products</h3>
+  <div class="row">
+    <div class="col-lg-3 col-md-4 col-sm-6 mb-3" *ngFor="let product of products; trackBy: trackByProductId">
+      <div class="card position-relative">
+        
+        <!-- Wishlist Button (Top Right) -->
+        <button class="wishlist-btn btn btn-light position-absolute top-0 end-0 m-2" (click)="addToWishlist(product)">
+          <i class="bi bi-heart"></i>
+        </button>
+
+        <!-- Product Image -->
+        <img [src]="product.imageUrl" class="card-img-top" [alt]="product.name">
+
+        <div class="card-body text-center">
+          <h5 class="card-title">{{ product.name }}</h5>
+          <p class="card-text fw-bold text-success">₹ {{ product.price }}</p>
+
+          <!-- Buttons -->
+          <div class="d-flex align-items-center mt-2">
+            <button class="btn btn-primary flex-grow-1" (click)="viewProductDetails(product)">
+              View Details
+            </button>
+            <button class="btn btn-success btn-sm ms-2" (click)="addToCart(product)">
+              <i class="bi bi-cart"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #noProducts>
+  <p class="text-center text-muted">No products found.</p>
+</ng-template>
+
+<div *ngIf="loading" class="text-center mt-4">
+  <div class="spinner-border text-primary" role="status"></div>
+  <p class="mt-2">Loading products...</p>
+</div>
+

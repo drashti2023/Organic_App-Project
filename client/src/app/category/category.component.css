@@ -1,0 +1,14 @@
+.category-img {
+    width: 160px;  
+    height: 160px; 
+    border-radius: 50%;
+    object-fit: cover; 
+    display: block;
+    margin: 0 auto;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.category-img:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}

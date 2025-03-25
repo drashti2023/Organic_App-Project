@@ -1,0 +1,61 @@
+<section class="py-5" *ngIf="!loading; else loadingTemplate">
+  <div class="container">
+    <div class="row align-items-center">
+      <!-- Product Image -->
+      <div class="col-md-6 text-center">
+        <img [src]="product?.imageUrl" class="img-fluid rounded shadow-sm" [alt]="product?.name">
+      </div>
+
+      <!-- Product Details -->
+      <div class="col-md-6">
+        <h2 class="fw-bold">{{ product?.name }}</h2>
+        <p class="text-muted">{{ product?.description }}</p>
+
+        <!-- Price & Stock -->
+        <h4 class="fw-bold text-success">₹{{ product?.price }}</h4>
+        <p *ngIf="product?.stock > 0; else outOfStock" class="text-success fw-semibold">In Stock</p>
+        <ng-template #outOfStock>
+          <p class="text-danger fw-semibold">Out of Stock</p>
+        </ng-template>
+
+        <!-- Quantity Selector -->
+        <div class="d-flex align-items-center my-3">
+          <button class="btn btn-outline-secondary me-2" (click)="decreaseQuantity()" [disabled]="quantity <= 1">
+            <i class="bi bi-dash"></i>
+          </button>
+          <span class="fw-bold px-3">{{ quantity }}</span>
+          <button class="btn btn-outline-secondary ms-2" (click)="increaseQuantity()">
+            <i class="bi bi-plus"></i>
+          </button>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="d-flex gap-3">
+          <button class="btn btn-success" (click)="addToCart(product)">
+            <i class="bi bi-cart"></i> Add to Cart
+          </button>
+
+          <button class="btn" [ngClass]="isInWishlist ? 'btn-outline-danger' : 'btn-danger'"
+            (click)="isInWishlist ? removeFromWishlist(product) : addToWishlist(product)">
+            <i class="bi" [ngClass]="isInWishlist ? 'bi-heart-fill' : 'bi-heart'"></i>
+            {{ isInWishlist ? 'Remove from Wishlist' : 'Add to Wishlist' }}
+          </button>
+          
+          <button class="btn btn-warning" (click)="buyNow(product)">
+            <i class="bi bi-lightning"></i> Buy Now
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Loading State -->
+<ng-template #loadingTemplate>
+  <div class="text-center my-5">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <p class="text-muted mt-3">Loading product details...</p>
+  </div>
+</ng-template>

@@ -1,0 +1,63 @@
+<div class="checkout-container">
+  <h2>Checkout</h2>
+
+  <!-- Order Summary -->
+  <div class="order-summary">
+    <h3>Order Summary</h3>
+    <div *ngIf="cart$ | async as cart">
+      <div *ngIf="cart.items.length > 0; else emptyCart">
+        <div class="order-items">
+          <div class="order-item" *ngFor="let item of cart.items">
+            <img [src]="item.product.imageUrl" alt="{{ item.product.name }}" class="order-item-image" />
+            <div class="order-item-details">
+              <p class="order-item-name">{{ item.product.name }}</p>
+              <p class="order-item-price">₹{{ item.product.price }} x {{ item.quantity }}</p>
+              <p class="order-item-total">Subtotal: ₹{{ item.product.price * item.quantity }}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="total-amount">
+          <strong>Total Amount:</strong> ₹{{ totalAmount }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <form (ngSubmit)="placeOrder()">
+    <!-- Name -->
+    <label for="name">Full Name</label>
+    <input type="text" id="name" [(ngModel)]="checkoutForm.name" name="name" required />
+
+    <!-- Email -->
+    <label for="email">Email</label>
+    <input type="email" id="email" [(ngModel)]="checkoutForm.email" name="email" required />
+
+    <!-- Phone -->
+    <label for="phone">Phone</label>
+    <input type="tel" id="phone" [(ngModel)]="checkoutForm.phone" name="phone" required />
+
+    <!-- Address -->
+    <label for="address">Address</label>
+    <textarea id="address" [(ngModel)]="checkoutForm.address" name="address" required></textarea>
+
+    <!-- Payment Method (Currently only COD) -->
+    <label>Payment Method</label>
+    <select [(ngModel)]="checkoutForm.paymentMethod" name="paymentMethod" disabled>
+      <option value="COD">Cash on Delivery</option>
+    </select>
+
+    <!-- Error Message -->
+    <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+
+    <!-- Submit Button -->
+    <button type="submit" [disabled]="isPlacingOrder">
+      {{ isPlacingOrder ? 'Processing...' : 'Place Order' }}
+    </button>
+  </form>
+</div>
+
+<!-- Empty Cart Message -->
+<ng-template #emptyCart>
+  <p>Your cart is empty.</p>
+</ng-template>
